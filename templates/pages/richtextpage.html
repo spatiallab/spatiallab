@@ -4,8 +4,19 @@
 
 {% block main %}{{ block.super }}
 
-{% editable page.richtextpage.content %}
-{{ page.richtextpage.content|richtext_filter|safe }}
-{% endeditable %}
+<div class="post">
+
+	<div class="post-title"><h2>{{ page.title }}</h2></div>
+
+	<div class="post-date">{{ page.publish_date }}</div>
+
+	<div class="post-body">
+		{% editable page.richtextpage.content %}
+		{{ page.richtextpage.content|richtext_filter|safe }}
+		{% endeditable %}
+	</div>
+
+</div>
+
 
 {% endblock %}
