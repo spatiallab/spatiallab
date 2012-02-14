@@ -1,0 +1,16 @@
+{% load pages_tags i18n %}
+
+{% spaceless %}
+<ul class="tabbed">
+    {% for page in page_branch %}
+    {% if page.in_navigation %}
+	{% if not page.login_required or page.login_required and user.is_authenticated %}
+    <li id="primary-menu-{{ page.html_id }}" 
+        class="{% if page.is_current_or_ascendant %}active{% endif %}{% if forloop.first %} first{% endif %}{% if forloop.last %} last{% endif %}">
+        <a href="{% url page page.slug %}">{{ page.title }}</a>
+    </li>
+    {% endif %}
+	{% endif %}
+    {% endfor %}
+</ul>
+{% endspaceless %}

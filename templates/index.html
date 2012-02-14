@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% load pages_tags mezzanine_tags i18n %}
+
+{% block meta_title %}{% trans "Home" %}{% endblock %}
+
+{% block title %}
+{% trans "Home" %}
+{% endblock %}
+
+{% block main %}
+
+<div class="container_12 clearfix alpha omega">
+	<div class="grid_12">
+		{% for page in page_branch %}
+	    {% if page.slug == "about"%}
+		{% for child in page.children.all %}
+		{% if child.slug == "about/mission"%}
+		<!-- Introduction -->
+		<h2 class="label label-green">
+			Our Mission
+		</h2>
+		<p class="quiet large">
+			What we want to achieve
+		</p>
+		{% editable child.richtextpage.content %}
+		{{ child.richtextpage.content|richtext_filter|safe }}
+		{% endeditable %}
+		<p>
+			<a href="/about" class="more right">Learn more »</a>
+		</p>				
+		{% endif %}
+		{% endfor %}
+	    {% endif %}
+	    {% endfor %}
+	</div>
+</div>
+
+<div class="content-separator"></div>
+
+<div class="container_12 clearfix alpha omega">
+	<div class="grid_8">
+	    <h2 class="label label-orange">
+			News
+		</h2>
+		<p class="quiet large">
+			Tuesday, February 14, 2012
+		</p>
+		<p>
+			<img src="{{ MEDIA_URL }}img/sample-event.jpg" width="240" height="80" alt="" class="bordered">
+		</p>
+		<p>
+			<em>The website is under development!</em>
+		</p>
+		<p>
+			<a href="/blog" class="more">More news»</a>
+		</p>
+
+
+	</div>
+	<div class="grid_4">
+		{% for page in page_branch %}
+	    {% if page.slug == "about"%}
+		{% for child in page.children.all %}
+		{% if child.slug == "about/contact"%}
+		<!-- Introduction -->
+		<h2 class="label label-green">
+			Contact Us
+		</h2>
+		<p class="quiet large">
+			http://spatiallab.ist.psu.edu/
+		</p>
+		{% editable child.richtextpage.content %}
+		{{ child.richtextpage.content|richtext_filter|safe }}
+		{% endeditable %}
+		{% endif %}
+		{% endfor %}
+	    {% endif %}
+	    {% endfor %}
+		
+	</div>
+
+</div>
+
+
+
+
+{% endblock %}
+
+
